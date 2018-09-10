@@ -10,7 +10,7 @@ export LANG=C.UTF-8
 
 if [[ "$1" == -* ]]; then
   #exec python3 "${app_dir}/bin/generate-acls.py" --noauth_local_webserver "$@"
-  exec python3 "${app_dir}/bin/generate-acls-WA.py" "$@"
+  exec python2 "${app_dir}/bin/generate-acls-WA.py" "$@"
 fi
 
 if [ "${GEN_ACLS_MAIL_WRAP}" == "" ]; then

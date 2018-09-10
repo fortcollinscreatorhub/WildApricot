@@ -85,6 +85,8 @@ def grab_RFID(debug, contact):
         if (field.FieldName == 'Privileges'):
             for privilege in field.Value:
                 priv.append(map_acl(privilege.Label))
+    if rfid == '':
+        return
     if ',' in rfid:
         for r in rfid.split(','):
             RFID_list.append({'rfid':fix_RFID(r), 'priv':priv})
