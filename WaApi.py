@@ -75,7 +75,7 @@ class WaApiClient(object):
         self._token = WaApiClient._parse_response(response)
         self._token.retrieved_at = datetime.datetime.now()
 
-    def execute_request(self, api_url, api_request_object=None, method=None):
+    def execute_request(self, api_url, api_request_object=None, method=None, raw=False):
         """
         perform api request and return result as an instance of ApiObject or list of ApiObjects
 
@@ -107,7 +107,10 @@ class WaApiClient(object):
         
         try:
             response = urllib.request.urlopen(request)
-            return WaApiClient._parse_response(response)
+            if raw:
+                return response
+            else:
+                return WaApiClient._parse_response(response)
         except urllib.error.HTTPError as httpErr:
             if httpErr.code == 400:
                 raise ApiException(httpErr.read())
